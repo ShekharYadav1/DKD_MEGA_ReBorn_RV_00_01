@@ -1,0 +1,8 @@
+DKD_MEGA_ReBorn_RGB_COLLECTOR_RV_00_00_00
+*sensor implemented
+*led implemented
+*data taking on terminal
+*temporary communication protocol for taking RGBC on terminal.
+
+DKD_MEGA_ReBorn_RGB_COLLECTOR_RV_00_00_01
+*RGBC data taking on 70-30% moving average type.

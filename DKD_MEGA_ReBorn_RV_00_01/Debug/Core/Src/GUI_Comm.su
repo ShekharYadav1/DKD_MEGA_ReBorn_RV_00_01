@@ -1,0 +1,14 @@
+../Core/Src/GUI_Comm.c:85:6:Comm_mode	8	static
+../Core/Src/GUI_Comm.c:98:6:GUI_Comm_init	16	static
+../Core/Src/GUI_Comm.c:118:6:part_rx_reset	0	static
+../Core/Src/GUI_Comm.c:128:6:rx_reset	8	static
+../Core/Src/GUI_Comm.c:135:6:HAL_UART_RxCpltCallback	8	static
+../Core/Src/GUI_Comm.c:153:6:HAL_UART_TxCpltCallback	8	static
+../Core/Src/GUI_Comm.c:173:9:check_crc	24	static
+../Core/Src/GUI_Comm.c:205:10:updtval	24	static
+../Core/Src/GUI_Comm.c:237:6:calpump	16	static
+../Core/Src/GUI_Comm.c:285:10:SendActVal	16	static
+../Core/Src/GUI_Comm.c:320:6:ExecuteCMD	24	static
+../Core/Src/GUI_Comm.c:520:6:ProcessCMD	8	static
+../Core/Src/GUI_Comm.c:532:6:GUI_timer_1msec	16	static
+../Core/Src/GUI_Comm.c:574:6:GUI_Comm_handler	8	static

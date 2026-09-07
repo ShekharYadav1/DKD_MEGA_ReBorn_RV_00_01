@@ -1,0 +1,14 @@
+../Core/Src/Sen_TCS34725.c:191:6:set_mode.part.0	1
+../Core/Src/Sen_TCS34725.c:102:6:TCS3472X_init	1
+../Core/Src/Sen_TCS34725.c:120:6:TCS3472X_reset	1
+../Core/Src/Sen_TCS34725.c:136:6:sensor_timer_1msec	3
+../Core/Src/Sen_TCS34725.c:147:6:HAL_I2C_MemTxCpltCallback	3
+../Core/Src/Sen_TCS34725.c:162:6:HAL_I2C_MemRxCpltCallback	3
+../Core/Src/Sen_TCS34725.c:184:6:memory_read	1
+../Core/Src/Sen_TCS34725.c:191:6:set_mode	2
+../Core/Src/Sen_TCS34725.c:211:14:check_mode	13
+../Core/Src/Sen_TCS34725.c:235:6:Chk_n_set_mode	3
+../Core/Src/Sen_TCS34725.c:251:6:TCS3472X_handler	16
+../Core/Src/Sen_TCS34725.c:270:5:get_sen_stat	1
+../Core/Src/Sen_TCS34725.c:279:6:get_rgbc_val	1
+../Core/Src/Sen_TCS34725.c:287:6:get_mavg_rgbc_val	1
