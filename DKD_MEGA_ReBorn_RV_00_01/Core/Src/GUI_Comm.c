@@ -388,6 +388,7 @@ void ExecuteCMD(void)
 	}
 	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x30) // get command in GUI
 	{
+		
 		uint8_t y;
 		uint16_t actval;
 		actval = SendActVal();
@@ -463,11 +464,12 @@ void ExecuteCMD(void)
 
 	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x6A) // sends RGBC auto-zero drift % values (scaled by 100, e.g., -377 = -3.77%)
 	{
+		//24 total frame length
 		uint8_t y;
 		y = GUI_Comm_var.rx_data_arr[COM_SRCS_ADD_POS];
 		GUI_Comm_var.rx_data_arr[0] = 0xAA;
 		GUI_Comm_var.rx_data_arr[1] = 0x99;
-		GUI_Comm_var.rx_data_arr[2] = 0x18;
+		GUI_Comm_var.rx_data_arr[2] = 0x18;   // CMD length
 		GUI_Comm_var.rx_data_arr[COM_SRCS_ADD_POS] = GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS];
 		GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS] = y;
 		GUI_Comm_var.rx_data_arr[5] = 0x6A;
