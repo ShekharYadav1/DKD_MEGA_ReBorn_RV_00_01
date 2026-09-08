@@ -236,6 +236,7 @@ typedef struct system_variables
 	double curr_ResVal;
 	double curr_ResVal1;
 	uint8_t curr_Result_cat;
+	int16_t rgbc_drift[4];  // R,G,B,C drift % scaled by 100 (e.g., -377 = -3.77%)
 }sys_var_typdef;
 
 typedef struct backup_memory_variables

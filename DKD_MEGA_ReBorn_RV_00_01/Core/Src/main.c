@@ -190,6 +190,13 @@ int main(void)
 							auto_zero_adjust(&sys_info.opt_std_vars2);
 							sys_info.Stat_L.alt_func = 0;
 						}
+						// drift% = ((NEW standard - OLD saved standard) / OLD saved standard) * 100
+						// NEW = opt_std_vars (overwritten by auto_zero_adjust with live readings)
+						// OLD = hrd_std_vars (hard-coded saved, unchanged during auto-zero)
+						sys_info.rgbc_drift[0] = (int16_t)(((int32_t)sys_info.opt_std_vars.stan_0_red - (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_red) * 100 / (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_red);
+						sys_info.rgbc_drift[1] = (int16_t)(((int32_t)sys_info.opt_std_vars.stan_0_green - (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_green) * 100 / (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_green);
+						sys_info.rgbc_drift[2] = (int16_t)(((int32_t)sys_info.opt_std_vars.stan_0_blue - (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_blue) * 100 / (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_blue);
+						sys_info.rgbc_drift[3] = (int16_t)(((int32_t)sys_info.opt_std_vars.stan_0_clear - (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_clear) * 100 / (int32_t)save_sys_info.bk_var.hrd_std_vars.stan_0_clear);
 #endif
 						sys_info.Stat_L.auto_zero_save = 1;
 						sys_info.Stat_L.alt_func = 0;

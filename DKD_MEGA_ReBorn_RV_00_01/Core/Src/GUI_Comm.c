@@ -461,7 +461,7 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[17] = 0x0A;
 	}
 
-	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x59) // code version verification command , sends hard-coded stan_0 RGBC signature
+	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x6A) // sends RGBC auto-zero drift % values (scaled by 100, e.g., -377 = -3.77%)
 	{
 		uint8_t y;
 		y = GUI_Comm_var.rx_data_arr[COM_SRCS_ADD_POS];
@@ -470,19 +470,19 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[2] = 0x18;
 		GUI_Comm_var.rx_data_arr[COM_SRCS_ADD_POS] = GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS];
 		GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS] = y;
-		GUI_Comm_var.rx_data_arr[5] = 0x59;
+		GUI_Comm_var.rx_data_arr[5] = 0x6A;
 		GUI_Comm_var.rx_data_arr[6] = sys_info.Stat_M.Byte;
 		GUI_Comm_var.rx_data_arr[7] = sys_info.Stat_L.Byte | 0x01;
 		GUI_Comm_var.rx_data_arr[8] = 0x00;
 		GUI_Comm_var.rx_data_arr[9] = 0x00;
-		GUI_Comm_var.rx_data_arr[10] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_red & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[11] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_red & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[12] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_green & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[13] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_green & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[14] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_blue & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[15] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_blue & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[16] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_clear & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[17] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_clear & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[10] = (uint8_t)((sys_info.rgbc_drift[0] & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[11] = (uint8_t)((sys_info.rgbc_drift[0] & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[12] = (uint8_t)((sys_info.rgbc_drift[1] & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[13] = (uint8_t)((sys_info.rgbc_drift[1] & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[14] = (uint8_t)((sys_info.rgbc_drift[2] & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[15] = (uint8_t)((sys_info.rgbc_drift[2] & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[16] = (uint8_t)((sys_info.rgbc_drift[3] & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[17] = (uint8_t)((sys_info.rgbc_drift[3] & 0x00FF) >> 0);
 		GUI_Comm_var.rx_data_arr[18] = 0x00;
 		GUI_Comm_var.rx_data_arr[19] = 0x00;
 		GUI_Comm_var.rx_data_arr[20] = 0x99;
