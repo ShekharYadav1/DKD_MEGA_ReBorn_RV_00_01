@@ -9,6 +9,6 @@
 ../Core/Src/GUI_Comm.c:237:6:calpump	9
 ../Core/Src/GUI_Comm.c:285:10:SendActVal	9
 ../Core/Src/GUI_Comm.c:320:6:ExecuteCMD	12
-../Core/Src/GUI_Comm.c:520:6:ProcessCMD	3
-../Core/Src/GUI_Comm.c:532:6:GUI_timer_1msec	28
-../Core/Src/GUI_Comm.c:574:6:GUI_Comm_handler	4
+../Core/Src/GUI_Comm.c:522:6:ProcessCMD	3
+../Core/Src/GUI_Comm.c:534:6:GUI_timer_1msec	28
+../Core/Src/GUI_Comm.c:576:6:GUI_Comm_handler	4

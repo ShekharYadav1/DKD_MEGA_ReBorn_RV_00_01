@@ -1,0 +1,2 @@
+../Core/Src/Std_hard_vals.c:24:6:sys_var_init	8	static
+../Core/Src/Std_hard_vals.c:305:6:init_hrd_strd	20	static
