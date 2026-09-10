@@ -533,7 +533,7 @@ void SUL_value_calculation1(unn_std_var_typdef *opt_std_vars)
 
 void NIT_value_calculation3(unn_std_var_typdef *opt_std_vars)
 {
-	
+
 	double absrb0, absrb1, absrb2, absrb3, avg_absrb;
 	double std_absrb_val_mul_sum, std_absrb_sqr_sum;
 	std_absrb_val_mul_sum = 0;
@@ -983,11 +983,11 @@ void gpio_config_check(void)
 	//	sys_info.set_sys_add = COPPER;
 	//	sys_info.set_sys_add = ZINC;
 	//	sys_info.set_sys_add = BORON;
-     // sys_info.set_sys_add = SULPHUR;               //DONE
-   	 sys_info.set_sys_add = POTASSIUM;               // DONE TESTING
-    // sys_info.set_sys_add = PHOSPHORUS;             //DONR
-//     sys_info.set_sys_add = NITROGEN;               // DONE
-	//	sys_info.set_sys_add = ORGANIC_CARBON;
+//      sys_info.set_sys_add = SULPHUR;               //DONE
+//   	 sys_info.set_sys_add = POTASSIUM;               // DONE TESTING
+//     sys_info.set_sys_add = PHOSPHORUS;             //DONR
+    sys_info.set_sys_add = NITROGEN;               // DONE
+//		 sys_info.set_sys_add = ORGANIC_CARBON;
 }
 
 void sys_mem_validate(void)
