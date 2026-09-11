@@ -387,6 +387,7 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[15] = 0x0A;
 	}
 	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x30) // get command in GUI
+
 	{
 		
 		uint8_t y;
@@ -410,6 +411,10 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[14] = 0x0D;
 		GUI_Comm_var.rx_data_arr[15] = 0x0A;
 	}
+
+	//aa991870ff10001300003cd43560370d9bd2ffff99aa0d0a
+
+
 	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x40) // Pip fill command
 	{
 		uint8_t y;
@@ -522,11 +527,14 @@ void ExecuteCMD(void)
 void ProcessCMD(void)
 {
 	if(check_crc())
+//	if(1)
 	{
 		if( GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS] == save_sys_info.bk_var.curr_sys_add)
 		{
 			ExecuteCMD();
-		}else{rx_reset();}
+		}else{
+			rx_reset();
+		}
 	}
 	else{rx_reset();}
 }
