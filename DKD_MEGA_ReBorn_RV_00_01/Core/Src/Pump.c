@@ -173,8 +173,7 @@ void drn_wsh_func(void)
 	{
 		pump8(1);
 	}//Sample Drain complete
-	else if(pump_func.drain_wsh_tm < (sys_info.drain_tm +
-			sys_info.wtr_f_wsh_in_tm) )
+	else if(pump_func.drain_wsh_tm < (sys_info.drain_tm + sys_info.wtr_f_wsh_in_tm) )
 	{
 		pump8(0);
 		pump7(1);

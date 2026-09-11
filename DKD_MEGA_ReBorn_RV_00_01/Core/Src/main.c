@@ -983,11 +983,11 @@ void gpio_config_check(void)
 	//	sys_info.set_sys_add = COPPER;
 	//	sys_info.set_sys_add = ZINC;
 	//	sys_info.set_sys_add = BORON;
-//      sys_info.set_sys_add = SULPHUR;               //DONE
-//   	 sys_info.set_sys_add = POTASSIUM;               // DONE TESTING
-//     sys_info.set_sys_add = PHOSPHORUS;             //DONR
-    sys_info.set_sys_add = NITROGEN;               // DONE
-//		 sys_info.set_sys_add = ORGANIC_CARBON;
+      sys_info.set_sys_add = SULPHUR;                  //DONE
+//   	    sys_info.set_sys_add = POTASSIUM;               // DONE TESTING
+//      sys_info.set_sys_add = PHOSPHORUS;             //DONE
+//      sys_info.set_sys_add = NITROGEN;               // DONE
+//		sys_info.set_sys_add = ORGANIC_CARBON;
 }
 
 void sys_mem_validate(void)

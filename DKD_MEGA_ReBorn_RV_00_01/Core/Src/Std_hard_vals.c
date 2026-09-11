@@ -297,7 +297,7 @@ void sys_var_init(void)
 	}
 
 	sys_info.Stat_L.warm_up_stat = 0;
-	sys_info.Stat_L.drain_wsh_stat = 1; // 1
+	sys_info.Stat_L.drain_wsh_stat = 0; // 1
 }
 #endif
 
