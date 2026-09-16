@@ -531,7 +531,9 @@ void SUL_value_calculation1(unn_std_var_typdef *opt_std_vars)
 	}
 }
 
-void NIT_value_calculation3(unn_std_var_typdef *opt_std_vars)
+
+/* noipa prevents GCC identical-code-folding from aliasing POT_value_calculation5 to NIT_value_calculation3 (identical algorithm duplicates) */
+void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_vars)
 {
 
 	double absrb0, absrb1, absrb2, absrb3, avg_absrb;
@@ -608,94 +610,6 @@ void NIT_value_calculation3(unn_std_var_typdef *opt_std_vars)
 	else if (sys_info.curr_ResVal > sys_info.act_stan_vals[10])
 	{
 		sys_info.curr_Result_cat = 5; //////////////Verry High
-									  // sys_info.curr_ResVal = sys_info.act_stan_vals[10];
-		// sys_info.curr_Result_cat = 5;           //////////////Verry High
-	}
-}
-
-/* noipa prevents GCC identical-code-folding from aliasing POT_value_calculation5 to NIT_value_calculation3 (identical algorithm duplicates) */
-void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_vars)
-{
-	double absrb0, absrb1, absrb2, absrb3, avg_absrb;                           /* absorbance for each RGBC channel and their average */
-	double std_absrb_val_mul_sum, std_absrb_sqr_sum;                            /* regression accumulators: sum of (absorbance*actual) and sum of (absorbance^2) */
-	std_absrb_val_mul_sum = 0;                                                   /* initialize regression numerator accumulator to zero */
-	std_absrb_sqr_sum = 0;                                                       /* initialize regression denominator accumulator to zero */
-	sys_info.std_multplr = 0;                                                     /* initialize multiplier (slope) to zero before calculation */
-
-	/* --- STEP 1 & 2: Loop through all 11 calibration standards to compute regression slope --- */
-	for (uint8_t i = 0; i < NOS_STD; i++)                                       /* iterate over all 11 standards (index 0 to 10) */
-	{
-		absrb0 = log10((double)opt_std_vars->stan_0_red / (double)opt_std_vars->strd_vars[i][0]);    /* absorbance of red channel:   log10(std0_red / stdi_red) */
-		absrb1 = log10((double)opt_std_vars->stan_0_green / (double)opt_std_vars->strd_vars[i][1]);  /* absorbance of green channel: log10(std0_green / stdi_green) */
-		absrb2 = log10((double)opt_std_vars->stan_0_blue / (double)opt_std_vars->strd_vars[i][2]);   /* absorbance of blue channel:  log10(std0_blue / stdi_blue) */
-		absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)opt_std_vars->strd_vars[i][3]);  /* absorbance of clear channel: log10(std0_clear / stdi_clear) */
-		avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4.00;    // STANDARDS ka absorbance              /* average absorbance across all 4 RGBC channels */
-		// sys_info.std_absrb_val_mul[i] = (avg_absrb * (double)sys_info.act_stan_vals[i]);
-		// sys_info.std_absrb_sqr[i] = (avg_absrb * avg_absrb);
-		std_absrb_val_mul_sum = std_absrb_val_mul_sum + (avg_absrb * (double)sys_info.act_stan_vals[i]); /* accumulate: absorbance * actual potassium value (numerator) */
-		std_absrb_sqr_sum = std_absrb_sqr_sum + (avg_absrb * avg_absrb);                            /* accumulate: absorbance squared (denominator) */
-	}
-	sys_info.std_multplr = std_absrb_val_mul_sum / std_absrb_sqr_sum;           /* compute regression slope (multiplier) = sum(x*y) / sum(x^2) */
-
-
-	absrb0 = log10((double)opt_std_vars->stan_0_red / (double)sys_info.curr_rgbc_vars.curr_red_rcv);   //current reading from sensor /* unknown sample red absorbance:   log10(std0_red / unknown_red) */
-	absrb1 = log10((double)opt_std_vars->stan_0_green / (double)sys_info.curr_rgbc_vars.curr_green_rcv);/* unknown sample green absorbance: log10(std0_green / unknown_green) */
-	absrb2 = log10((double)opt_std_vars->stan_0_blue / (double)sys_info.curr_rgbc_vars.curr_blue_rcv);  /* unknown sample blue absorbance:  log10(std0_blue / unknown_blue) */
-	absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)sys_info.curr_rgbc_vars.curr_clear_rcv);/* unknown sample clear absorbance: log10(std0_clear / unknown_clear) *///ye sensor se abhi-abhi liya gaya live/current sample reading hai (jo standards nahi hai, balki wo sample hai jiska aap actually concentration jaanna chahte ho).
-	                                                            
-	avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4;                         // absorbance of current sample  ( STANDARDS ka absorbance )                 /* average absorbance across all 4 RGBC channels for unknown sample */
-	sys_info.curr_ResVal = avg_absrb * sys_info.std_multplr;                    /* potassium concentration = average_absorbance * regression_slope */
-
-	/* --- STEP 4: Categorize result into 5 levels based on threshold breakpoints --- */
-	/* Thresholds: act_stan_vals[0]=0, [1]=2, [2]=4, [3]=6, [4]=6, [5]=8, [6]=8, [7]=10, [8]=10, [9]=20, [10]=20 */
-	if (sys_info.curr_ResVal <= sys_info.act_stan_vals[0])                      /* if result <= 0 ppm (below lowest standard) */
-	{
-		sys_info.curr_ResVal = sys_info.act_stan_vals[0];                       /* clamp result to minimum (0 ppm) */
-		sys_info.curr_Result_cat = 1;                                           /* category 1 = Very Low */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[1])                 /* if result <= 2 ppm */
-	{
-		sys_info.curr_Result_cat = 1; //////////////VERRY LOW                   /* category 1 = Very Low */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[2])                 /* if result <= 4 ppm */
-	{
-		sys_info.curr_Result_cat = 1; //////////////VERRY LOW                   /* category 1 = Very Low */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[3])                 /* if result <= 6 ppm */
-	{
-		sys_info.curr_Result_cat = 2; //////////////LOW                         /* category 2 = Low */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[4])                 /* if result <= 6 ppm (duplicate threshold for Low) */
-	{
-		sys_info.curr_Result_cat = 2; //////////////LOW                         /* category 2 = Low */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[5])                 /* if result <= 8 ppm */
-	{
-		sys_info.curr_Result_cat = 3; //////////////Medium                      /* category 3 = Medium */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[6])                 /* if result <= 8 ppm (duplicate threshold for Medium) */
-	{
-		sys_info.curr_Result_cat = 3; //////////////Medium                      /* category 3 = Medium */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[7])                 /* if result <= 10 ppm */
-	{
-		sys_info.curr_Result_cat = 4; //////////////High                        /* category 4 = High */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[8])                 /* if result <= 10 ppm (duplicate threshold for High) */
-	{
-		sys_info.curr_Result_cat = 4; //////////////High                        /* category 4 = High */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[9])                 /* if result <= 20 ppm */
-	{
-		sys_info.curr_Result_cat = 5; //////////////Verry High                  /* category 5 = Very High */
-	}
-	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[10])                /* if result <= 20 ppm (duplicate threshold for Very High) */
-	{
-		sys_info.curr_Result_cat = 5; //////////////Verry High                  /* category 5 = Very High */
-	}
-	else if (sys_info.curr_ResVal > sys_info.act_stan_vals[10])                 /* if result > 20 ppm (above highest standard) */
-	{
-		sys_info.curr_Result_cat = 5; //////////////Verry High                  /* category 5 = Very High (cap at highest category) */
 									  // sys_info.curr_ResVal = sys_info.act_stan_vals[10];
 		// sys_info.curr_Result_cat = 5;           //////////////Verry High
 	}
@@ -829,9 +743,9 @@ void cal_result(void)
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars);
 			break; // calibration done
-		case NITROGEN:
-			 NIT_value_calculation3(&sys_info.opt_std_vars);
-			break; // calibration done
+//		case NITROGEN:
+//			 NIT_value_calculation3(&sys_info.opt_std_vars);
+//			break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars);
 			break; // pending calibration
@@ -857,9 +771,9 @@ void cal_result(void)
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars2);
 			break; // calibration done
-		case NITROGEN:
-			NIT_value_calculation3(&sys_info.opt_std_vars2);
-			break; // calibration done
+//		case NITROGEN:
+//			NIT_value_calculation3(&sys_info.opt_std_vars2);
+//			break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars2);
 			break; // pending calibration
@@ -983,8 +897,8 @@ void gpio_config_check(void)
 	//	sys_info.set_sys_add = COPPER;
 	//	sys_info.set_sys_add = ZINC;
 	//	sys_info.set_sys_add = BORON;
-      sys_info.set_sys_add = SULPHUR;                  //DONE
-//   	    sys_info.set_sys_add = POTASSIUM;               // DONE TESTING
+//      sys_info.set_sys_add = SULPHUR;                  //DONE
+   	    sys_info.set_sys_add = POTASSIUM;               // TESTING
 //      sys_info.set_sys_add = PHOSPHORUS;             //DONE
 //      sys_info.set_sys_add = NITROGEN;               // DONE
 //		sys_info.set_sys_add = ORGANIC_CARBON;

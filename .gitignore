@@ -1,0 +1,18 @@
+# STM32CubeIDE build output
+DKD_MEGA_ReBorn_RV_00_01/Debug/
+DKD_MEGA_ReBorn_RV_00_01/Release/
+
+# Build artifacts
+*.o
+*.d
+*.su
+*.cyclo
+*.map
+*.list
+*.elf
+*.bin
+*.md
+
+# OS files
+Thumbs.db
+.DS_Store

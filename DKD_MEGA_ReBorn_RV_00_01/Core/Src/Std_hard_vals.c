@@ -644,61 +644,61 @@ switch(save_sys_info.bk_var.curr_sys_add)
         save_sys_info.bk_var.hrd_std_vars.stan_10_clear = 21533;     save_sys_info.bk_var.hrd_std_vars2.stan_10_clear = 21533;
 		break;
 	case POTASSIUM:  //standard on date
-        save_sys_info.bk_var.hrd_std_vars.stan_0_red = 19509;        save_sys_info.bk_var.hrd_std_vars2.stan_0_red = 18270;     /* stan_0: 0 ppm (blank) - Red channel: primary=19509, alternate=18270 */
-        save_sys_info.bk_var.hrd_std_vars.stan_0_green = 19674;      save_sys_info.bk_var.hrd_std_vars2.stan_0_green = 14522;   /* stan_0: 0 ppm (blank) - Green channel: primary=19674, alternate=14522 */
-        save_sys_info.bk_var.hrd_std_vars.stan_0_blue = 21081;       save_sys_info.bk_var.hrd_std_vars2.stan_0_blue = 16275;    /* stan_0: 0 ppm (blank) - Blue channel: primary=21081, alternate=16275 */
-        save_sys_info.bk_var.hrd_std_vars.stan_0_clear = 55231;      save_sys_info.bk_var.hrd_std_vars2.stan_0_clear = 51293;   /* stan_0: 0 ppm (blank) - Clear channel: primary=55231, alternate=51293 */
+		save_sys_info.bk_var.hrd_std_vars.stan_0_red = 19509;        save_sys_info.bk_var.hrd_std_vars2.stan_0_red = 19509;     /* stan_0: 0 ppm (blank) - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_0_green = 19674;      save_sys_info.bk_var.hrd_std_vars2.stan_0_green = 19674;   /* stan_0: 0 ppm (blank) - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_0_blue = 21081;       save_sys_info.bk_var.hrd_std_vars2.stan_0_blue = 21081;    /* stan_0: 0 ppm (blank) - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_0_clear = 55231;      save_sys_info.bk_var.hrd_std_vars2.stan_0_clear = 55231;   /* stan_0: 0 ppm (blank) - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_1_red = 18489;        save_sys_info.bk_var.hrd_std_vars2.stan_1_red = 16130;     /* stan_1: 2 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_1_green = 18664;      save_sys_info.bk_var.hrd_std_vars2.stan_1_green = 13343;   /* stan_1: 2 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_1_blue = 19997;       save_sys_info.bk_var.hrd_std_vars2.stan_1_blue = 15134;    /* stan_1: 2 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_1_clear = 52411;      save_sys_info.bk_var.hrd_std_vars2.stan_1_clear = 46676;   /* stan_1: 2 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_1_red = 18489;        save_sys_info.bk_var.hrd_std_vars2.stan_1_red = 18489;     /* stan_1: 2 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_1_green = 18664;      save_sys_info.bk_var.hrd_std_vars2.stan_1_green = 18664;   /* stan_1: 2 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_1_blue = 19997;       save_sys_info.bk_var.hrd_std_vars2.stan_1_blue = 19997;    /* stan_1: 2 ppm - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_1_clear = 52411;      save_sys_info.bk_var.hrd_std_vars2.stan_1_clear = 52411;   /* stan_1: 2 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_2_red = 14879;        save_sys_info.bk_var.hrd_std_vars2.stan_2_red = 14000;     /* stan_2: 4 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_2_green = 15148;      save_sys_info.bk_var.hrd_std_vars2.stan_2_green = 12129;   /* stan_2: 4 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_2_blue = 16205;       save_sys_info.bk_var.hrd_std_vars2.stan_2_blue = 13953;    /* stan_2: 4 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_2_clear = 42431;      save_sys_info.bk_var.hrd_std_vars2.stan_2_clear = 41985;   /* stan_2: 4 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_2_red = 14879;        save_sys_info.bk_var.hrd_std_vars2.stan_2_red = 14879;     /* stan_2: 4 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_2_green = 15148;      save_sys_info.bk_var.hrd_std_vars2.stan_2_green = 15148;   /* stan_2: 4 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_2_blue = 16205;       save_sys_info.bk_var.hrd_std_vars2.stan_2_blue = 16205;    /* stan_2: 4 ppm - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_2_clear = 42431;      save_sys_info.bk_var.hrd_std_vars2.stan_2_clear = 42431;   /* stan_2: 4 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_3_red = 12434;        save_sys_info.bk_var.hrd_std_vars2.stan_3_red = 14000;     /* stan_3: 6 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_3_green = 12713;      save_sys_info.bk_var.hrd_std_vars2.stan_3_green = 12129;   /* stan_3: 6 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_3_blue = 13558;       save_sys_info.bk_var.hrd_std_vars2.stan_3_blue = 13953;    /* stan_3: 6 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_3_clear = 35561;      save_sys_info.bk_var.hrd_std_vars2.stan_3_clear = 41985;   /* stan_3: 6 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_3_red = 12434;        save_sys_info.bk_var.hrd_std_vars2.stan_3_red = 12434;     /* stan_3: 6 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_3_green = 12713;      save_sys_info.bk_var.hrd_std_vars2.stan_3_green = 12713;   /* stan_3: 6 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_3_blue = 13558;       save_sys_info.bk_var.hrd_std_vars2.stan_3_blue = 13558;    /* stan_3: 6 ppm - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_3_clear = 35561;      save_sys_info.bk_var.hrd_std_vars2.stan_3_clear = 35561;   /* stan_3: 6 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_4_red = 12434;        save_sys_info.bk_var.hrd_std_vars2.stan_4_red = 10423;     /* stan_4: 6 ppm (duplicate) - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_4_green = 12713;       save_sys_info.bk_var.hrd_std_vars2.stan_4_green = 9970;   /* stan_4: 6 ppm (duplicate) - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_4_blue = 13558;       save_sys_info.bk_var.hrd_std_vars2.stan_4_blue = 11836;    /* stan_4: 6 ppm (duplicate) - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_4_clear = 35561;      save_sys_info.bk_var.hrd_std_vars2.stan_4_clear = 33830;   /* stan_4: 6 ppm (duplicate) - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_4_red = 12434;        save_sys_info.bk_var.hrd_std_vars2.stan_4_red = 12434;     /* stan_4: 6 ppm (duplicate) - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_4_green = 12713;      save_sys_info.bk_var.hrd_std_vars2.stan_4_green = 12713;   /* stan_4: 6 ppm (duplicate) - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_4_blue = 13558;       save_sys_info.bk_var.hrd_std_vars2.stan_4_blue = 13558;    /* stan_4: 6 ppm (duplicate) - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_4_clear = 35561;      save_sys_info.bk_var.hrd_std_vars2.stan_4_clear = 35561;   /* stan_4: 6 ppm (duplicate) - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_5_red = 10470;        save_sys_info.bk_var.hrd_std_vars2.stan_5_red = 10423;     /* stan_5: 8 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_5_green = 10735;       save_sys_info.bk_var.hrd_std_vars2.stan_5_green = 9970;   /* stan_5: 8 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_5_blue = 11418;       save_sys_info.bk_var.hrd_std_vars2.stan_5_blue = 11836;    /* stan_5: 8 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_5_clear = 30004;      save_sys_info.bk_var.hrd_std_vars2.stan_5_clear = 33830;   /* stan_5: 8 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_5_red = 10470;        save_sys_info.bk_var.hrd_std_vars2.stan_5_red = 10470;     /* stan_5: 8 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_5_green = 10735;      save_sys_info.bk_var.hrd_std_vars2.stan_5_green = 10735;   /* stan_5: 8 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_5_blue = 11418;       save_sys_info.bk_var.hrd_std_vars2.stan_5_blue = 11418;    /* stan_5: 8 ppm - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_5_clear = 30004;      save_sys_info.bk_var.hrd_std_vars2.stan_5_clear = 30004;   /* stan_5: 8 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_6_red = 10470;         save_sys_info.bk_var.hrd_std_vars2.stan_6_red = 7956;     /* stan_6: 8 ppm (duplicate) - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_6_green = 10735;       save_sys_info.bk_var.hrd_std_vars2.stan_6_green = 8365;   /* stan_6: 8 ppm (duplicate) - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_6_blue = 11418;       save_sys_info.bk_var.hrd_std_vars2.stan_6_blue = 10230;    /* stan_6: 8 ppm (duplicate) - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_6_clear = 30004;      save_sys_info.bk_var.hrd_std_vars2.stan_6_clear = 27924;   /* stan_6: 8 ppm (duplicate) - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_6_red = 10470;        save_sys_info.bk_var.hrd_std_vars2.stan_6_red = 10470;     /* stan_6: 8 ppm (duplicate) - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_6_green = 10735;      save_sys_info.bk_var.hrd_std_vars2.stan_6_green = 10735;   /* stan_6: 8 ppm (duplicate) - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_6_blue = 11418;       save_sys_info.bk_var.hrd_std_vars2.stan_6_blue = 11418;    /* stan_6: 8 ppm (duplicate) - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_6_clear = 30004;      save_sys_info.bk_var.hrd_std_vars2.stan_6_clear = 30004;   /* stan_6: 8 ppm (duplicate) - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_7_red = 9211;         save_sys_info.bk_var.hrd_std_vars2.stan_7_red = 7956;     /* stan_7: 10 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_7_green = 9457;       save_sys_info.bk_var.hrd_std_vars2.stan_7_green = 8365;   /* stan_7: 10 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_7_blue = 10033;       save_sys_info.bk_var.hrd_std_vars2.stan_7_blue = 10230;    /* stan_7: 10 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_7_clear = 26414;      save_sys_info.bk_var.hrd_std_vars2.stan_7_clear = 27924;   /* stan_7: 10 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_7_red = 9211;         save_sys_info.bk_var.hrd_std_vars2.stan_7_red = 9211;     /* stan_7: 10 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_7_green = 9457;       save_sys_info.bk_var.hrd_std_vars2.stan_7_green = 9457;   /* stan_7: 10 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_7_blue = 10033;       save_sys_info.bk_var.hrd_std_vars2.stan_7_blue = 10033;    /* stan_7: 10 ppm - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_7_clear = 26414;      save_sys_info.bk_var.hrd_std_vars2.stan_7_clear = 26414;   /* stan_7: 10 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_8_red = 9211;         save_sys_info.bk_var.hrd_std_vars2.stan_8_red = 5811;     /* stan_8: 10 ppm (duplicate) - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_8_green = 9457;       save_sys_info.bk_var.hrd_std_vars2.stan_8_green = 6847;   /* stan_8: 10 ppm (duplicate) - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_8_blue = 10033;        save_sys_info.bk_var.hrd_std_vars2.stan_8_blue = 8673;   /* stan_8: 10 ppm (duplicate) - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_8_clear = 26414;      save_sys_info.bk_var.hrd_std_vars2.stan_8_clear = 22489;   /* stan_8: 10 ppm (duplicate) - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_8_red = 9211;         save_sys_info.bk_var.hrd_std_vars2.stan_8_red = 9211;     /* stan_8: 10 ppm (duplicate) - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_8_green = 9457;       save_sys_info.bk_var.hrd_std_vars2.stan_8_green = 9457;   /* stan_8: 10 ppm (duplicate) - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_8_blue = 10033;       save_sys_info.bk_var.hrd_std_vars2.stan_8_blue = 10033;   /* stan_8: 10 ppm (duplicate) - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_8_clear = 26414;      save_sys_info.bk_var.hrd_std_vars2.stan_8_clear = 26414;   /* stan_8: 10 ppm (duplicate) - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_9_red = 5346;         save_sys_info.bk_var.hrd_std_vars2.stan_9_red = 5811;     /* stan_9: 20 ppm - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_9_green = 5534;       save_sys_info.bk_var.hrd_std_vars2.stan_9_green = 6847;   /* stan_9: 20 ppm - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_9_blue = 5824;        save_sys_info.bk_var.hrd_std_vars2.stan_9_blue = 8673;    /* stan_9: 20 ppm - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_9_clear = 15398;      save_sys_info.bk_var.hrd_std_vars2.stan_9_clear = 22489;   /* stan_9: 20 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_9_red = 5346;         save_sys_info.bk_var.hrd_std_vars2.stan_9_red = 5346;     /* stan_9: 20 ppm - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_9_green = 5534;       save_sys_info.bk_var.hrd_std_vars2.stan_9_green = 5534;   /* stan_9: 20 ppm - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_9_blue = 5824;        save_sys_info.bk_var.hrd_std_vars2.stan_9_blue = 5824;    /* stan_9: 20 ppm - Clear channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_9_clear = 15398;      save_sys_info.bk_var.hrd_std_vars2.stan_9_clear = 15398;   /* stan_9: 20 ppm - Clear channel */
 
-        save_sys_info.bk_var.hrd_std_vars.stan_10_red = 5346;        save_sys_info.bk_var.hrd_std_vars2.stan_10_red = 4425;    /* stan_10: 20 ppm (duplicate) - Red channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_10_green = 5534;      save_sys_info.bk_var.hrd_std_vars2.stan_10_green = 5785;  /* stan_10: 20 ppm (duplicate) - Green channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_10_blue = 5824;       save_sys_info.bk_var.hrd_std_vars2.stan_10_blue = 7557;   /* stan_10: 20 ppm (duplicate) - Blue channel */
-        save_sys_info.bk_var.hrd_std_vars.stan_10_clear = 15398;     save_sys_info.bk_var.hrd_std_vars2.stan_10_clear = 18768;  /* stan_10: 20 ppm (duplicate) - Clear channel */
-		break;
+		save_sys_info.bk_var.hrd_std_vars.stan_10_red = 5346;        save_sys_info.bk_var.hrd_std_vars2.stan_10_red = 5346;    /* stan_10: 20 ppm (duplicate) - Red channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_10_green = 5534;      save_sys_info.bk_var.hrd_std_vars2.stan_10_green = 5534;  /* stan_10: 20 ppm (duplicate) - Green channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_10_blue = 5824;       save_sys_info.bk_var.hrd_std_vars2.stan_10_blue = 5824;   /* stan_10: 20 ppm (duplicate) - Blue channel */
+		save_sys_info.bk_var.hrd_std_vars.stan_10_clear = 15398;     save_sys_info.bk_var.hrd_std_vars2.stan_10_clear = 15398;  /* stan_10: 20 ppm (duplicate) - Clear channel */
+				break;
 	case PHOSPHORUS://29-04-2026 alkline							//19-05-2026 acidic
         save_sys_info.bk_var.hrd_std_vars.stan_0_red   = 16604;  save_sys_info.bk_var.hrd_std_vars2.stan_0_red   = 16713;
         save_sys_info.bk_var.hrd_std_vars.stan_0_green = 15462;  save_sys_info.bk_var.hrd_std_vars2.stan_0_green = 15570;
