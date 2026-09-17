@@ -66,6 +66,7 @@
 /* USER CODE BEGIN PV */
 sys_var_typdef sys_info;
 union_bk_var_typdef save_sys_info;
+float factor_value = 0.0;
 
 /* USER CODE END PV */
 
@@ -553,14 +554,16 @@ void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_v
 		std_absrb_val_mul_sum = std_absrb_val_mul_sum + (avg_absrb * (double)sys_info.act_stan_vals[i]);
 		std_absrb_sqr_sum = std_absrb_sqr_sum + (avg_absrb * avg_absrb);
 	}
-	sys_info.std_multplr = std_absrb_val_mul_sum / std_absrb_sqr_sum; // constant factor
+
+	sys_info.std_multplr = (std_absrb_val_mul_sum / std_absrb_sqr_sum)*factor_value; // constant factor
 
 	absrb0 = log10((double)opt_std_vars->stan_0_red / (double)sys_info.curr_rgbc_vars.curr_red_rcv);
 	absrb1 = log10((double)opt_std_vars->stan_0_green / (double)sys_info.curr_rgbc_vars.curr_green_rcv);
 	absrb2 = log10((double)opt_std_vars->stan_0_blue / (double)sys_info.curr_rgbc_vars.curr_blue_rcv);
 	absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)sys_info.curr_rgbc_vars.curr_clear_rcv);
 	avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4;
-	sys_info.curr_ResVal = avg_absrb * sys_info.std_multplr;
+
+	sys_info.curr_ResVal = (avg_absrb * sys_info.std_multplr)*factor_value;
 
 	if (sys_info.curr_ResVal <= sys_info.act_stan_vals[0])
 	{
@@ -743,9 +746,9 @@ void cal_result(void)
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars);
 			break; // calibration done
-//		case NITROGEN:
-//			 NIT_value_calculation3(&sys_info.opt_std_vars);
-//			break; // calibration done
+		// case NITROGEN:
+		// 	 NIT_value_calculation3(&sys_info.opt_std_vars);
+		// 	break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars);
 			break; // pending calibration
@@ -771,9 +774,9 @@ void cal_result(void)
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars2);
 			break; // calibration done
-//		case NITROGEN:
-//			NIT_value_calculation3(&sys_info.opt_std_vars2);
-//			break; // calibration done
+		// case NITROGEN:
+		// 	NIT_value_calculation3(&sys_info.opt_std_vars2);
+		// 	break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars2);
 			break; // pending calibration
@@ -797,7 +800,11 @@ void cal_result(void)
 void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 {
 	float factor;
+	float factor1=0, factor2=0, factor3=0, factor4=0;
+	float avrg_factor = 0;
+
 	factor = (float)sys_info.curr_rgbc_vars.curr_red_rcv / (float)opt_std_vars->stan_0_red;
+	factor1 = factor;
 	opt_std_vars->stan_0_red = sys_info.curr_rgbc_vars.curr_red_rcv;
 	for (uint8_t i = 1; i < NOS_STD; i++)
 	{
@@ -806,6 +813,7 @@ void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 	}
 
 	factor = (float)sys_info.curr_rgbc_vars.curr_green_rcv / (float)opt_std_vars->stan_0_green;
+	factor2 = factor;
 	opt_std_vars->stan_0_green = sys_info.curr_rgbc_vars.curr_green_rcv;
 	for (uint8_t i = 1; i < NOS_STD; i++)
 	{
@@ -814,6 +822,7 @@ void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 	}
 
 	factor = (float)sys_info.curr_rgbc_vars.curr_blue_rcv / (float)opt_std_vars->stan_0_blue;
+	factor3 = factor;
 	opt_std_vars->stan_0_blue = sys_info.curr_rgbc_vars.curr_blue_rcv;
 	for (uint8_t i = 1; i < NOS_STD; i++)
 	{
@@ -822,12 +831,17 @@ void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 	}
 
 	factor = (float)sys_info.curr_rgbc_vars.curr_clear_rcv / (float)opt_std_vars->stan_0_clear;
+	factor4 = factor;
 	opt_std_vars->stan_0_clear = sys_info.curr_rgbc_vars.curr_clear_rcv;
 	for (uint8_t i = 1; i < NOS_STD; i++)
 	{
 		opt_std_vars->strd_vars[i][3] =
 			(uint16_t)(factor * (float)opt_std_vars->strd_vars[i][3]);
 	}
+avrg_factor = (factor1 + factor2 + factor3 + factor4) / 4;
+
+factor_value = avrg_factor;
+	
 }
 
 int mem_fresh_check(void)

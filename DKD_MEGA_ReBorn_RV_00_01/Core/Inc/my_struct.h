@@ -232,7 +232,7 @@ typedef struct system_variables
 	//double std_absrb_val_mul[NOS_STD];
 	//double std_absrb_sqr[NOS_STD];
 	double std_multplr;
-
+	double std_intercept;
 	double curr_ResVal;
 	double curr_ResVal1;
 	uint8_t curr_Result_cat;

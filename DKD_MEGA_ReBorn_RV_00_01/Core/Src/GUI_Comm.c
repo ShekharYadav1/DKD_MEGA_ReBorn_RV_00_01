@@ -348,7 +348,7 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[22] = 0x0D;
 		GUI_Comm_var.rx_data_arr[23] = 0x0A;
 	}
-	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x20)
+	else if( GUI_Comm_var.rx_data_arr[COM_CMD_TYP_POS] == 0x20) // this is spaical command for GUI to update the status of system and also to stop the pump and motor if they are running
 	{
 		if(sys_info.sys_f.ppfillf == 1)
 		{
@@ -527,7 +527,6 @@ void ExecuteCMD(void)
 void ProcessCMD(void)
 {
 	if(check_crc())
-//	if(1)
 	{
 		if( GUI_Comm_var.rx_data_arr[COM_DEST_ADD_POS] == save_sys_info.bk_var.curr_sys_add)
 		{
