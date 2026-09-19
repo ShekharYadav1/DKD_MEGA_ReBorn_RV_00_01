@@ -7,8 +7,8 @@
 ../Core/Src/GUI_Comm.c:173:9:check_crc	7
 ../Core/Src/GUI_Comm.c:205:10:updtval	5
 ../Core/Src/GUI_Comm.c:237:6:calpump	9
-../Core/Src/GUI_Comm.c:285:10:SendActVal	9
-../Core/Src/GUI_Comm.c:320:6:ExecuteCMD	12
-../Core/Src/GUI_Comm.c:527:6:ProcessCMD	3
-../Core/Src/GUI_Comm.c:541:6:GUI_timer_1msec	28
-../Core/Src/GUI_Comm.c:583:6:GUI_Comm_handler	4
+../Core/Src/GUI_Comm.c:285:10:SendActVal	8
+../Core/Src/GUI_Comm.c:321:6:ExecuteCMD	12
+../Core/Src/GUI_Comm.c:528:6:ProcessCMD	3
+../Core/Src/GUI_Comm.c:542:6:GUI_timer_1msec	28
+../Core/Src/GUI_Comm.c:584:6:GUI_Comm_handler	4

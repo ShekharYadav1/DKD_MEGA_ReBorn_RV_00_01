@@ -290,7 +290,8 @@ uint16_t SendActVal(void)
 		(save_sys_info.bk_var.curr_sys_add == IRON) ||
 		(save_sys_info.bk_var.curr_sys_add == SULPHUR) ||
 		(save_sys_info.bk_var.curr_sys_add == PHOSPHORUS) ||
-		(save_sys_info.bk_var.curr_sys_add == NITROGEN) )               //changed from val = val
+		(save_sys_info.bk_var.curr_sys_add == NITROGEN) ||
+		(save_sys_info.bk_var.curr_sys_add == POTASSIUM))               //changed from val = val
 	{
 		val = sys_info.curr_ResVal * 100.00;
 	}
@@ -301,10 +302,10 @@ uint16_t SendActVal(void)
 		val = sys_info.curr_ResVal * 1000.00;
 	}
 
-	else if( (save_sys_info.bk_var.curr_sys_add == POTASSIUM) )
-	{
-		val = sys_info.curr_ResVal *100.00;        /* POTASSIUM GUI scaling: multiply result by 100 to preserve 2 decimal places (e.g., 12.45 ppm --> 1245 for transmission) */
-	}
+//	else if( (save_sys_info.bk_var.curr_sys_add == POTASSIUM) )
+//	{
+//		val = sys_info.curr_ResVal *100.00;        /* POTASSIUM GUI scaling: multiply result by 100 to preserve 2 decimal places (e.g., 12.45 ppm --> 1245 for transmission) */
+//	}
 
 	else if( (save_sys_info.bk_var.curr_sys_add == ORGANIC_CARBON) )
 	{
@@ -482,14 +483,14 @@ void ExecuteCMD(void)
 		GUI_Comm_var.rx_data_arr[7] = sys_info.Stat_L.Byte | 0x01;
 		GUI_Comm_var.rx_data_arr[8] = 0x00;
 		GUI_Comm_var.rx_data_arr[9] = 0x00;
-		GUI_Comm_var.rx_data_arr[10] = (uint8_t)((sys_info.rgbc_drift[0] & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[11] = (uint8_t)((sys_info.rgbc_drift[0] & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[12] = (uint8_t)((sys_info.rgbc_drift[1] & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[13] = (uint8_t)((sys_info.rgbc_drift[1] & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[14] = (uint8_t)((sys_info.rgbc_drift[2] & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[15] = (uint8_t)((sys_info.rgbc_drift[2] & 0x00FF) >> 0);
-		GUI_Comm_var.rx_data_arr[16] = (uint8_t)((sys_info.rgbc_drift[3] & 0xFF00) >> 8);
-		GUI_Comm_var.rx_data_arr[17] = (uint8_t)((sys_info.rgbc_drift[3] & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[10] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_red   & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[11] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_red   & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[12] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_green & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[13] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_green & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[14] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_blue  & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[15] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_blue  & 0x00FF) >> 0);
+		GUI_Comm_var.rx_data_arr[16] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_clear & 0xFF00) >> 8);
+		GUI_Comm_var.rx_data_arr[17] = (uint8_t)((save_sys_info.bk_var.hrd_std_vars.stan_0_clear & 0x00FF) >> 0);
 		GUI_Comm_var.rx_data_arr[18] = 0x00;
 		GUI_Comm_var.rx_data_arr[19] = 0x00;
 		GUI_Comm_var.rx_data_arr[20] = 0x99;

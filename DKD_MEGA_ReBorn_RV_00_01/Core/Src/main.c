@@ -66,7 +66,7 @@
 /* USER CODE BEGIN PV */
 sys_var_typdef sys_info;
 union_bk_var_typdef save_sys_info;
-float factor_value = 0.0;
+double factor_value = 1.0; // Adjust this value as needed for calibration
 
 /* USER CODE END PV */
 
@@ -203,17 +203,17 @@ int main(void)
 						}
 						else if (sys_info.Stat_L.alt_func == 1)
 						{
-							auto_zero_adjust(&sys_info.opt_std_vars);
-							auto_zero_adjust(&sys_info.opt_std_vars2);
+						    auto_zero_adjust(&sys_info.opt_std_vars);       // normal
+							auto_zero_adjust(&sys_info.opt_std_vars2);  // acidic
 							sys_info.Stat_L.alt_func = 0;
 						}
 						// drift% = ((NEW standard - OLD saved standard) / OLD saved standard) * 100
 						// NEW = opt_std_vars (overwritten by auto_zero_adjust with live readings)
 						// OLD = hrd_std_vars (hard-coded saved, unchanged during auto-zero)
-						sys_info.rgbc_drift[0] = cal_drift_pct(sys_info.opt_std_vars.stan_0_red, save_sys_info.bk_var.hrd_std_vars.stan_0_red);
-						sys_info.rgbc_drift[1] = cal_drift_pct(sys_info.opt_std_vars.stan_0_green, save_sys_info.bk_var.hrd_std_vars.stan_0_green);
-						sys_info.rgbc_drift[2] = cal_drift_pct(sys_info.opt_std_vars.stan_0_blue, save_sys_info.bk_var.hrd_std_vars.stan_0_blue);
-						sys_info.rgbc_drift[3] = cal_drift_pct(sys_info.opt_std_vars.stan_0_clear, save_sys_info.bk_var.hrd_std_vars.stan_0_clear);
+//						sys_info.rgbc_drift[0] = cal_drift_pct(sys_info.opt_std_vars.stan_0_red, save_sys_info.bk_var.hrd_std_vars.stan_0_red);
+//						sys_info.rgbc_drift[1] = cal_drift_pct(sys_info.opt_std_vars.stan_0_green, save_sys_info.bk_var.hrd_std_vars.stan_0_green);
+//						sys_info.rgbc_drift[2] = cal_drift_pct(sys_info.opt_std_vars.stan_0_blue, save_sys_info.bk_var.hrd_std_vars.stan_0_blue);
+//						sys_info.rgbc_drift[3] = cal_drift_pct(sys_info.opt_std_vars.stan_0_clear, save_sys_info.bk_var.hrd_std_vars.stan_0_clear);
 #endif
 						sys_info.Stat_L.auto_zero_save = 1;
 						sys_info.Stat_L.alt_func = 0;
@@ -532,9 +532,7 @@ void SUL_value_calculation1(unn_std_var_typdef *opt_std_vars)
 	}
 }
 
-
-/* noipa prevents GCC identical-code-folding from aliasing POT_value_calculation5 to NIT_value_calculation3 (identical algorithm duplicates) */
-void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_vars)
+void NIT_value_calculation3(unn_std_var_typdef *opt_std_vars)
 {
 
 	double absrb0, absrb1, absrb2, absrb3, avg_absrb;
@@ -555,7 +553,7 @@ void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_v
 		std_absrb_sqr_sum = std_absrb_sqr_sum + (avg_absrb * avg_absrb);
 	}
 
-	sys_info.std_multplr = (std_absrb_val_mul_sum / std_absrb_sqr_sum)*factor_value; // constant factor
+	sys_info.std_multplr = std_absrb_val_mul_sum / std_absrb_sqr_sum; // constant factor
 
 	absrb0 = log10((double)opt_std_vars->stan_0_red / (double)sys_info.curr_rgbc_vars.curr_red_rcv);
 	absrb1 = log10((double)opt_std_vars->stan_0_green / (double)sys_info.curr_rgbc_vars.curr_green_rcv);
@@ -563,7 +561,93 @@ void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_v
 	absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)sys_info.curr_rgbc_vars.curr_clear_rcv);
 	avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4;
 
-	sys_info.curr_ResVal = (avg_absrb * sys_info.std_multplr)*factor_value;
+	sys_info.curr_ResVal = avg_absrb * sys_info.std_multplr;
+
+	if (sys_info.curr_ResVal <= sys_info.act_stan_vals[0])
+	{
+		sys_info.curr_ResVal = sys_info.act_stan_vals[0];
+		sys_info.curr_Result_cat = 1;
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[1])
+	{
+		sys_info.curr_Result_cat = 1; //////////////VERRY LOW
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[2])
+	{
+		sys_info.curr_Result_cat = 1; //////////////VERRY LOW
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[3])
+	{
+		sys_info.curr_Result_cat = 2; //////////////LOW
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[4])
+	{
+		sys_info.curr_Result_cat = 2; //////////////LOW
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[5])
+	{
+		sys_info.curr_Result_cat = 3; //////////////Medium
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[6])
+	{
+		sys_info.curr_Result_cat = 3; //////////////Medium
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[7])
+	{
+		sys_info.curr_Result_cat = 4; //////////////High
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[8])
+	{
+		sys_info.curr_Result_cat = 4; //////////////High
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[9])
+	{
+		sys_info.curr_Result_cat = 5; //////////////Verry High
+	}
+	else if (sys_info.curr_ResVal <= sys_info.act_stan_vals[10])
+	{
+		sys_info.curr_Result_cat = 5; //////////////Verry High
+	}
+	else if (sys_info.curr_ResVal > sys_info.act_stan_vals[10])
+	{
+		sys_info.curr_Result_cat = 5; //////////////Verry High
+									  // sys_info.curr_ResVal = sys_info.act_stan_vals[10];
+		// sys_info.curr_Result_cat = 5;           //////////////Verry High
+	}
+}
+
+/* noipa prevents GCC identical-code-folding from aliasing POT_value_calculation5 to NIT_value_calculation3 (identical algorithm duplicates) */
+void __attribute__((noipa)) POT_value_calculation5(unn_std_var_typdef *opt_std_vars)
+{
+
+	double absrb0, absrb1, absrb2, absrb3, avg_absrb;
+	double std_absrb_val_mul_sum, std_absrb_sqr_sum;
+	std_absrb_val_mul_sum = 0;
+	std_absrb_sqr_sum = 0;
+	sys_info.std_multplr = 0;
+	for (uint8_t i = 0; i < NOS_STD; i++)
+	{                         //opt_std_vars->stan_0_red
+		absrb0 = log10((double)opt_std_vars->stan_0_red / (double)opt_std_vars->strd_vars[i][0]);
+		absrb1 = log10((double)opt_std_vars->stan_0_green / (double)opt_std_vars->strd_vars[i][1]);
+		absrb2 = log10((double)opt_std_vars->stan_0_blue / (double)opt_std_vars->strd_vars[i][2]);
+		absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)opt_std_vars->strd_vars[i][3]);
+		avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4.00;
+		// sys_info.std_absrb_val_mul[i] = (avg_absrb * (double)sys_info.act_stan_vals[i]);
+		// sys_info.std_absrb_sqr[i] = (avg_absrb * avg_absrb);
+		std_absrb_val_mul_sum = std_absrb_val_mul_sum + (avg_absrb * (double)sys_info.act_stan_vals[i]);
+		std_absrb_sqr_sum = std_absrb_sqr_sum + (avg_absrb * avg_absrb);
+	}
+
+	sys_info.std_multplr = ((std_absrb_val_mul_sum / std_absrb_sqr_sum)*factor_value); // constant factor
+//	sys_info.std_multplr = (std_absrb_val_mul_sum / std_absrb_sqr_sum);
+	absrb0 = log10((double)opt_std_vars->stan_0_red / (double)sys_info.curr_rgbc_vars.curr_red_rcv);
+	absrb1 = log10((double)opt_std_vars->stan_0_green / (double)sys_info.curr_rgbc_vars.curr_green_rcv);
+	absrb2 = log10((double)opt_std_vars->stan_0_blue / (double)sys_info.curr_rgbc_vars.curr_blue_rcv);
+	absrb3 = log10((double)opt_std_vars->stan_0_clear / (double)sys_info.curr_rgbc_vars.curr_clear_rcv);
+	avg_absrb = (absrb0 + absrb1 + absrb2 + absrb3) / 4;
+
+	sys_info.curr_ResVal = (avg_absrb * sys_info.std_multplr);
+//	sys_info.curr_ResVal = (avg_absrb * sys_info.std_multplr);
 
 	if (sys_info.curr_ResVal <= sys_info.act_stan_vals[0])
 	{
@@ -742,13 +826,14 @@ void cal_result(void)
 		{
 		case SULPHUR:
 			SUL_value_calculation1(&sys_info.opt_std_vars);
+//			POT_value_calculation5(&sys_info.opt_std_vars);
 			break; // calibration done
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars);
 			break; // calibration done
-		// case NITROGEN:
-		// 	 NIT_value_calculation3(&sys_info.opt_std_vars);
-		// 	break; // calibration done
+		case NITROGEN:
+			 NIT_value_calculation3(&sys_info.opt_std_vars);
+			break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars);
 			break; // pending calibration
@@ -774,9 +859,9 @@ void cal_result(void)
 		case PHOSPHORUS:
 			PHOS_value_calculation2(&sys_info.opt_std_vars2);
 			break; // calibration done
-		// case NITROGEN:
-		// 	NIT_value_calculation3(&sys_info.opt_std_vars2);
-		// 	break; // calibration done
+		case NITROGEN:
+			NIT_value_calculation3(&sys_info.opt_std_vars2);
+			break; // calibration done
 		case MAGNESIUM:
 			MAG_value_calculation4(&sys_info.opt_std_vars2);
 			break; // pending calibration
@@ -802,7 +887,7 @@ void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 	float factor;
 	float factor1=0, factor2=0, factor3=0, factor4=0;
 	float avrg_factor = 0;
-
+                   //(sys_info.curr_rgbc_vars.curr_red_rcv
 	factor = (float)sys_info.curr_rgbc_vars.curr_red_rcv / (float)opt_std_vars->stan_0_red;
 	factor1 = factor;
 	opt_std_vars->stan_0_red = sys_info.curr_rgbc_vars.curr_red_rcv;
@@ -810,6 +895,7 @@ void auto_zero_adjust(unn_std_var_typdef *opt_std_vars)
 	{
 		opt_std_vars->strd_vars[i][0] =
 			(uint16_t)(factor * (float)opt_std_vars->strd_vars[i][0]);
+
 	}
 
 	factor = (float)sys_info.curr_rgbc_vars.curr_green_rcv / (float)opt_std_vars->stan_0_green;
